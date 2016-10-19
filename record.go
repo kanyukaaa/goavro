@@ -206,7 +206,7 @@ type RecordSetter func(*Record) error
 
 // recordSchemaRaw specifies the schema of the record to create. Schema
 // must be `map[string]interface{}`.
-func recordSchemaRaw(schema interface{}) RecordSetter {
+func RecordSchemaRaw(schema interface{}) RecordSetter {
 	return func(r *Record) error {
 		var ok bool
 		r.schemaMap, ok = schema.(map[string]interface{})
