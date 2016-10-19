@@ -596,7 +596,7 @@ func (st symtab) makeRecordCodec(enclosingNamespace string, schema interface{}) 
 	friendlyName := fmt.Sprintf("record (%s)", errorNamespace)
 
 	// delegate schema checks to NewRecord()
-	recordTemplate, err := NewRecord(recordSchemaRaw(schema), RecordEnclosingNamespace(enclosingNamespace))
+	recordTemplate, err := NewRecord(RecordSchemaRaw(schema), RecordEnclosingNamespace(enclosingNamespace))
 	if err != nil {
 		return nil, err
 	}
@@ -619,7 +619,7 @@ func (st symtab) makeRecordCodec(enclosingNamespace string, schema interface{}) 
 	c := &codec{
 		nm: recordTemplate.n,
 		df: func(r io.Reader) (interface{}, error) {
-			someRecord, _ := NewRecord(recordSchemaRaw(schema), RecordEnclosingNamespace(enclosingNamespace))
+			someRecord, _ := NewRecord(RecordSchemaRaw(schema), RecordEnclosingNamespace(enclosingNamespace))
 			for idx, codec := range fieldCodecs {
 				value, err := codec.Decode(r)
 				if err != nil {
